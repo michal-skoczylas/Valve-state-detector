@@ -1,0 +1,21 @@
+{
+    "name": "xd",
+    "h": 28,
+    "s": 205,
+    "v": 183,
+    "tol": 20,
+    "morphOn": false,
+    "morph": 0,
+    "minFill": 5,
+    "rois": [
+        {
+            "rx": 438,
+            "ry": 146,
+            "rw": 25,
+            "rh": 26,
+            "name": "ZAW\u00d3R 1",
+            "desc": "",
+            "baseState": "yellow_is_closed"
+        }
+    ]
+}
