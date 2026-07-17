@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify, send_file, Response
+from flask import Flask, request, jsonify, send_file, Response
+from flask_cors import CORS
 import cv2
 import os
 import io
@@ -8,6 +9,7 @@ import threading
 import time
 
 app = Flask(__name__)
+CORS(app)
 IMAGE_FOLDER = 'images'
 CONFIG_FOLDER = 'configs'
 
@@ -181,8 +183,8 @@ def get_image_list():
     valid_ext = ('.jpg', '.jpeg', '.png', '.bmp')
     return sorted([f for f in os.listdir(IMAGE_FOLDER) if f.lower().endswith(valid_ext)])
 
-@app.route('/')
-def index(): return render_template('index.html', images=get_image_list(), cameras=AVAILABLE_CAMERAS)
+@app.route('/api/init')
+def api_init(): return jsonify({"images": get_image_list(), "cameras": AVAILABLE_CAMERAS})
 
 @app.route('/image/<filename>')
 def get_original_image(filename): return send_file(os.path.join(IMAGE_FOLDER, filename))
